@@ -1,0 +1,15 @@
+names:
+- car
+- traffic sign
+- traffic light
+- person
+- truck
+- bus
+- bike
+- rider
+- motor
+- train
+nc: 10
+path: ../bdd100k_subset_1k
+train: ../bdd100k_subset_1k/images
+val: ../bdd100k_subset_1k/images
