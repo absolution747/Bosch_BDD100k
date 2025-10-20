@@ -2,8 +2,8 @@
 
 # --- Configuration ---
 OUTPUT_FILENAME="bdd100k_data.zip"
-# Set the directory where the unzipped files will go (current directory in this case)
-UNZIP_DIR="./" 
+# Set the directory where the unzipped files will go (data directory in this case)
+UNZIP_DIR="/workspace/data" 
 
 # ---1 Argument Check ---
 if [ "$#" -ne 1 ]; then

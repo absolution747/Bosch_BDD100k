@@ -1,0 +1,57 @@
+# YOLOv8-M with P2 detection head for BDD100K
+# Optimized for small object detection
+
+# Parameters
+nc: 10  # number of classes
+depth_multiple: 0.67  # model depth multiple (YOLOv8-M)
+width_multiple: 0.75  # layer channel multiple (YOLOv8-M)
+
+# Class names for BDD100K (MUST MATCH DATASET YAML ORDER)
+names:
+  0: person
+  1: car
+  2: bus
+  3: truck
+  4: bike
+  5: motor
+  6: rider
+  7: traffic light
+  8: traffic sign
+  9: train
+
+# YOLOv8-M backbone
+backbone:
+  # [from, repeats, module, args]
+  - [-1, 1, Conv, [64, 3, 2]]      # 0-P1/2
+  - [-1, 1, Conv, [128, 3, 2]]     # 1-P2/4
+  - [-1, 3, C2f, [128, True]]      # 2
+  - [-1, 1, Conv, [256, 3, 2]]     # 3-P3/8
+  - [-1, 6, C2f, [256, True]]      # 4
+  - [-1, 1, Conv, [512, 3, 2]]     # 5-P4/16
+  - [-1, 6, C2f, [512, True]]      # 6
+  - [-1, 1, Conv, [768, 3, 2]]     # 7-P5/32
+  - [-1, 3, C2f, [768, True]]      # 8
+  - [-1, 1, SPPF, [768, 5]]        # 9
+
+# YOLOv8-M head with P2 detection layer
+head:
+  - [-1, 1, nn.Upsample, [None, 2, 'nearest']]  # 10
+  - [[-1, 6], 1, Concat, [1]]                   # 11 cat backbone P4
+  - [-1, 3, C2f, [512]]                         # 12
+  - [-1, 1, nn.Upsample, [None, 2, 'nearest']]  # 13
+  - [[-1, 4], 1, Concat, [1]]                   # 14 cat backbone P3
+  - [-1, 3, C2f, [256]]                         # 15 (P3/8-medium)
+  - [-1, 1, nn.Upsample, [None, 2, 'nearest']]  # 16
+  - [[-1, 2], 1, Concat, [1]]                   # 17 cat backbone P2
+  - [-1, 3, C2f, [128]]                         # 18 (P2/4-small)
+
+  - [-1, 1, Conv, [128, 3, 2]]                  # 19 downsample
+  - [[-1, 15], 1, Concat, [1]]                  # 20 cat head P3
+  - [-1, 3, C2f, [256]]                         # 21 (P3/8)
+  - [-1, 1, Conv, [256, 3, 2]]                  # 22 downsample
+  - [[-1, 12], 1, Concat, [1]]                  # 23 cat head P4
+  - [-1, 3, C2f, [512]]                         # 24 (P4/16)
+  - [-1, 1, Conv, [512, 3, 2]]                  # 25 downsample
+  - [[-1, 9], 1, Concat, [1]]                   # 26 cat backbone P5
+  - [-1, 3, C2f, [768]]                         # 27 (P5/32)
+  - [[18, 21, 24, 27], 1, Detect, [nc]]         # 28 Detect(P2, P3, P4, P5)

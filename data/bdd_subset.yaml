@@ -1,0 +1,15 @@
+path: /workspace/data/bdd100k_subset_yolo
+train: images/train
+val: images/val
+
+names:
+  0: car
+  1: traffic sign
+  2: traffic light
+  3: person
+  4: truck
+  5: bus
+  6: bike
+  7: rider
+  8: motor
+  9: train

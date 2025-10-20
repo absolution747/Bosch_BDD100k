@@ -15,10 +15,10 @@ from tqdm import tqdm
 # -------------------------------------
 # CONFIG
 # -------------------------------------
-SRC_JSON = "../bdd100k_labels_images_train.json"
-SRC_IMG_DIR = "../bdd100k_images_100k/bdd100k/images/100k/train"
-DST_IMG_DIR = "./bdd100k_subset_1k/images"
-DST_JSON = "./bdd100k_subset_1k/labels.json"
+SRC_JSON = "/workspace/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_train.json"
+SRC_IMG_DIR = "/workspace/bdd100k_images_100k/bdd100k/images/100k/train"
+DST_IMG_DIR = "/workspace/bdd100k_subset_1k/images"
+DST_JSON = "/workspace/bdd100k_subset_1k/labels.json"
 
 NUM_IMAGES = 1000
 CLASSES = [
