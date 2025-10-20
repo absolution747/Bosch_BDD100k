@@ -20,9 +20,7 @@ COPY requirements.txt /workspace/requirements.txt
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r /workspace/requirements.txt
-
-# Copy project files
-COPY . /workspace/
+RUN pip install jupyter
 
 # Make download script executable
 RUN if [ -f /workspace/download_data.sh ]; then \
