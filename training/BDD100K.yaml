@@ -1,0 +1,32 @@
+path: /workspace/data/bdd100k_subset_yolo
+train: images/train
+val: images/val
+
+# Class list (MUST MATCH MODEL YAML ORDER)
+names:
+  0: person
+  1: car
+  2: bus
+  3: truck
+  4: bike
+  5: motor
+  6: rider
+  7: traffic light
+  8: traffic sign
+  9: train
+
+# Data augmentations optimized for 1280x1280 with small objects
+hsv_h: 0.015      # HSV-Hue augmentation
+hsv_s: 0.7        # HSV-Saturation augmentation
+hsv_v: 0.4        # HSV-Value augmentation
+degrees: 0.0      # rotation (disabled for small objects)
+translate: 0.1    # translation
+scale: 0.5        # scale variation (0.5 to 1.5x)
+shear: 0.0        # shear
+perspective: 0.0  # perspective
+flipud: 0.0       # vertical flip
+fliplr: 0.5       # horizontal flip (50% probability)
+mosaic: 1.0       # mosaic augmentation (critical for small objects)
+mixup: 0.0        # mixup augmentation
+copy_paste: 0.0   # copy-paste augmentation
+close_mosaic: 10  # disable mosaic in last 10 epochs

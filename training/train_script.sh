@@ -1,0 +1,11 @@
+yolo detect mode=train \
+  model=/workspace/models/yolov8m.pt \
+  data=/workspace/training/bdd100k.yaml \
+  imgsz=1280 \
+  epochs=10 \
+  batch=2 \
+  workers=1 \
+  project=/workspace/training/bdd_yolov8_p2 \
+  name=exp_varifocal_dfl \
+  cfg=/workspace/training/train_args.yaml \
+  device=cpu
