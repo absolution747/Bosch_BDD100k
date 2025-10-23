@@ -65,7 +65,7 @@ Explore comprehensive dataset insights through our dedicated analytics notebook:
    - In-depth analysis and insights
 
 ### Generate subset of the Dataset
-For proof of training we create a training subset of the dataset to have a more time realistic training. Here we create a mini dataset of 1000 images
+For proof of training we create a training subset of the dataset to have a more time realistic training. Here we create a mini dataset of 1000 images. If we are to train on a T4 GPU we could increase the training sample size to 10000 images along with 2000 images for the validation set. 
 ```bash
    python3 data_analysis/generate_subset.py
    ```
