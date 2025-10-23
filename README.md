@@ -7,7 +7,7 @@ A comprehensive toolkit for working with the BDD100k dataset, featuring Docker c
 ## 🚀 Quick Start
 
 ### Building the Docker Environment
-
+ā
 Build and launch the Docker container with a single command:
 
 ```bash
@@ -64,17 +64,22 @@ Explore comprehensive dataset insights through our dedicated analytics notebook:
    - Visualization of data distributions
    - In-depth analysis and insights
 
-### Generate subset of Dataset
-For proof of training we create a training/valdiation subset of the dataset to have a more time practical training. Here we create a mini dataset of 1000 images that cover each class category proportionally 
+### Generate subset of the Dataset
+For proof of training we create a training subset of the dataset to have a more time realistic training. Here we create a mini dataset of 1000 images
 ```bash
-   python3 data/generate_subset.py
+   python3 data_analysis/generate_subset.py
    ```
-### Format conversion
-we have opted for using the data to train a yolov8m model. For this reason we will need to convert the data format to coco standart format. We will need to execute the python script shown below
-```bash
-   python3 convert/bdd_to_coco.py
-   ```
-This script will generate the file ***/workspace/bdd100k_subset_1k/coco_annotations.json*** which will be used for training the yolov8m model
+apart from generating a subset of the data, the data is also in the YOLO format which is compatible for the training of the yolov8m model.
+
+### Model Training
+The model training script can be viewed here:
+
+**[📓 Open Model Training Notebook](https://github.com/absolution747/Bosch_BDD100k/blob/main/training/train.ipynb)**
+
+For detailed explainer on model choice, architecture, training parameters and augmentations please please view the following MarkDown.
+
+**[📓 model_conclusion.md](https://github.com/absolution747/Bosch_BDD100k/blob/main/training/model_conclusion.md)**
+
 
 ---
 
